@@ -5,21 +5,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hello.UserMapper;
+
+
 @RestController
 public class HelloController {
-
     @Autowired
-    private CityMapper cityMapper;
+    private UserMapper userMapper;
 
-    @Autowired
-    private SqlSession sqlSession;
 
     @RequestMapping("/")
     public String index() {
-        City city1 = cityMapper.findByState("CA");
-        City city2 = sqlSession.selectOne("hello.CityMapper.findByState", "CA");
-        System.out.println(city1);
-        System.out.println(city2);
         return "Greetings from Spring Boot!";
     }
+
+    @RequestMapping("/account_detail")
+    public String accountDetail() {
+        Member user1 = userMapper.findById(1);
+        
+        return user1.getName();
+    }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "my login";
+    }
+    
 }
