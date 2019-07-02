@@ -23,7 +23,7 @@ public class HelloController {
     public String accountDetail() {
         Member user1 = userMapper.findById(1);
         
-        return user1.getName();
+        return user1.getUsername();
     }
 
     @RequestMapping("/login")

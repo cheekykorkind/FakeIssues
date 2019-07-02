@@ -4,4 +4,12 @@
   <select id="findById" resultType="hello.Member">
     SELECT * FROM users WHERE id = #{id}
   </select>
+
+  <select id="readUser" parameterType="String" resultType="hello.Member">
+    SELECT * FROM users WHERE username = #{username}
+  </select>
+
+  <select id="readAuthority" parameterType="String" resultType="String">
+    SELECT authority_name FROM authority WHERE username = #{username}
+  </select> 
 </mapper>
