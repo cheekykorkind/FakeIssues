@@ -4,8 +4,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
-@RestController
+
+@Controller
 public class HelloController {
 
     @Autowired
@@ -14,12 +16,13 @@ public class HelloController {
     @Autowired
     private SqlSession sqlSession;
 
-    @RequestMapping("/")
+    @RequestMapping("/will/first")
     public String index() {
-        City city1 = cityMapper.findByState("CA");
-        City city2 = sqlSession.selectOne("hello.CityMapper.findByState", "CA");
-        System.out.println(city1);
-        System.out.println(city2);
-        return "Greetings from Spring Boot!";
+        return "firstPage";
+    }
+
+    @RequestMapping("/second")
+    public String index2() {
+        return "secondPage";
     }
 }
