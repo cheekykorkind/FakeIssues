@@ -12,10 +12,10 @@
     --     username varchar(20),
     -- authority_name varchar(20)
 
-INSERT INTO users (username, password, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
-    VALUES ('user1', 'password', true, true, true, true);
-INSERT INTO users (username, password, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
-    VALUES ('user2', 'password', true, true, true, true);
+INSERT INTO user (username, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
+    VALUES ('user1', 'password', 'smallName1', 1, 1, 1, 1);
+INSERT INTO user (username, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
+    VALUES ('user2', 'password', 'smallName2', 1, 1, 1, 1);
 
 INSERT INTO authority (username, authority_name)
     VALUES ('user1', 'ADMIN');

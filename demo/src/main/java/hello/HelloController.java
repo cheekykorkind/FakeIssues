@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hello.UserMapper;
 
-
 @RestController
 public class HelloController {
-    @Autowired
-    private UserMapper userMapper;
+    // @Autowired
+    // private UserMapper userMapper;
 
 
     @RequestMapping("/")
@@ -21,12 +20,12 @@ public class HelloController {
 
     @RequestMapping("/account_detail")
     public String accountDetail() {
-        Member user1 = userMapper.findById(1);
+        // Member user1 = userMapper.findById(1);
         
-        return user1.getUsername();
+        return "ddddddffff";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/login1")
     public String login() {
         return "my login";
     }

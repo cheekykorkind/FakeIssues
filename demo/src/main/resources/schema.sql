@@ -5,15 +5,16 @@
 --     state VARCHAR(255),
 --     country VARCHAR(255)
 -- );
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    username varchar(255) NULL DEFAULT NULL,
+    username VARCHAR(255) NULL DEFAULT NULL,
+    name VARCHAR(20) NULL DEFAULT NULL,
     password VARCHAR(500) NULL DEFAULT NULL,
-    isAccountNonExpired boolean,
-    isAccountNonLocked boolean,
-    isCredentialsNonExpired boolean,
-    isEnabled boolean
+    isAccountNonExpired TINYINT(1) NULL DEFAULT NULL,
+    isAccountNonLocked TINYINT(1) NULL DEFAULT NULL,
+    isCredentialsNonExpired TINYINT(1) NULL DEFAULT NULL,
+    isEnabled TINYINT(1) NULL DEFAULT NULL
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
@@ -22,6 +23,6 @@ ENGINE=InnoDB
 
 DROP TABLE IF EXISTS authority;
 CREATE TABLE authority (
-    username varchar(20),
-    authority_name varchar(20)
+    username VARCHAR(20) NULL DEFAULT NULL,
+    authority_name VARCHAR(20) NULL DEFAULT NULL
 );
