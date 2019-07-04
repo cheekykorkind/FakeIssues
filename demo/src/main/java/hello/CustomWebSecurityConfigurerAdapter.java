@@ -11,10 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import hello.CustomUserDetailsService;
+import hello.CustomLoginSuccessHandler;
 import hello.MyNoPasswordEnconder;
-
  
 @EnableWebSecurity
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
@@ -30,6 +31,10 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         return new MyNoPasswordEnconder();
     }
 
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new CustomLoginSuccessHandler("/index2");
+    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -44,7 +49,8 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
             .authorizeRequests().anyRequest().authenticated()
             .and()
             .formLogin()
-            .defaultSuccessUrl("/")
+            .loginPage("/login")
+            .successHandler(successHandler())
             .permitAll();
     }
  

@@ -11,8 +11,3 @@ public interface UserMapper {
     public Member readUser(String username);
     public List<String> readAuthority(String username);
 }
-
-
- 
-
-
