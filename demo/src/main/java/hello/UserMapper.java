@@ -7,7 +7,7 @@ import java.util.List;
 import hello.Member;
 
 public interface UserMapper {
-    // public Member findById(@Param("id") long id);
     public Member readUser(String username);
     public List<String> readAuthority(String username);
+    public void insertUser(Member user);
 }

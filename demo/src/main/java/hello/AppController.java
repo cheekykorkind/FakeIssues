@@ -1,18 +1,15 @@
 package hello;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 
 import hello.UserMapper;
+import hello.Member;
 
 @Controller
 public class AppController {
-    // @Autowired
-    // private UserMapper userMapper;
-
     @RequestMapping("/")
     public String root() {
         return "root";
@@ -20,7 +17,6 @@ public class AppController {
 
     @RequestMapping("/index")
     public String index() {
-        // Member user1 = userMapper.findById(1);
         return "index";
     }
 
@@ -29,7 +25,6 @@ public class AppController {
         return "index2";
     }
     
-
     @RequestMapping("/login")
     public String login() {
         return "login";

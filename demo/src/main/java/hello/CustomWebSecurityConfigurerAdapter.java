@@ -15,7 +15,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import hello.CustomUserDetailsService;
 import hello.CustomLoginSuccessHandler;
-import hello.MyNoPasswordEnconder;
  
 @EnableWebSecurity
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
@@ -23,12 +22,9 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
-    // 어플리케이션을 구동할 때 비밀번호를 암호화 하는 방법 찾는데 시간이 걸려서 
-    // 비밀번호 암호화 부분을 평문을 사용하도록 오버라이드
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // return new BCryptPasswordEncoder();
-        return new MyNoPasswordEnconder();
+        return new BCryptPasswordEncoder();
     }
 
     @Bean

@@ -24,7 +24,6 @@ public class Member implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    
     public Long getId() {
         return this.id;
     }

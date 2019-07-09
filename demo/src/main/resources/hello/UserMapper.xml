@@ -7,8 +7,8 @@
   <select id="readAuthority" parameterType="String" resultType="String">
     SELECT authority_name FROM authority WHERE username = #{username}
   </select>
+  <insert id='insertUser' parameterType='hello.Member'>
+    INSERT INTO user(username, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
+    VALUES(#{username}, #{password}, #{name}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
+  </insert>
 </mapper>
-  <!-- <select id="findById" resultType="hello.Member">
-    SELECT * FROM users WHERE id = #{id}
-  </select> -->
-  
