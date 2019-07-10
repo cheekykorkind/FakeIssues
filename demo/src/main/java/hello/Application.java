@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.core.env.Environment;
 
 import hello.UserMapper;
 import hello.MemberSeeder;
@@ -17,6 +18,9 @@ import hello.MemberSeeder;
 @MapperScan(basePackages = "hello")
 public class Application  implements CommandLineRunner {
     
+    @Autowired
+    private Environment env;
+
 	@Autowired
     private MemberSeeder MemberSeeder;
 
@@ -29,9 +33,12 @@ public class Application  implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        MemberSeeder.registerMember();
-        System.out.println("inserted");
+        String migration = env.getProperty("migration");
 
-        System.out.println(userMapper.readUser("user3").getPassword());
+        if ("up".equals(migration)) {
+            MemberSeeder.registerMember();
+            System.out.println("inserted");
+            System.out.println(userMapper.readUser("user3").getPassword());
+        }
     }
 }
