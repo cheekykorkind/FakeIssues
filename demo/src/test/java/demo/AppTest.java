@@ -4,12 +4,15 @@
 package demo;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-public class AppTest {
-    @Test public void testAppHasAGreeting() {
-        // @todo : unit테스트 시작하면 작성예정
-        // App classUnderTest = new App();
-        // assertNotNull("app should have a greeting", classUnderTest.getGreeting());
-    }
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class ApplicationTests {
+
+	@Test
+	public void contextLoads() {
+	}
 }
