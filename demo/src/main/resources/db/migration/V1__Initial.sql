@@ -1,4 +1,3 @@
--- DROP TABLE IF EXISTS user;
 CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) NULL DEFAULT NULL,
@@ -11,9 +10,6 @@ CREATE TABLE user (
 )
 default character set = utf8;
 
---  DEFAULT CHARSET=UTF8;  
-
--- DROP TABLE IF EXISTS authority;
 CREATE TABLE authority (
     username VARCHAR(20) NULL DEFAULT NULL,
     authority_name VARCHAR(20) NULL DEFAULT NULL

@@ -36,19 +36,5 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-security")
 
-    // compile("org.flywaydb:flyway-core:5.2.4")
     compile('org.flywaydb:flyway-core')
 }
-
-// task hello {
-//     def props = new Properties()
-//     file("$rootDir/src/main/resources/application.properties").withInputStream {
-//         props.load(it)
-//     }
-//     println("${props}")
-    
-//     println("${props.getProperty('spring.datasource.url')}")
-    
-// }
-// task aaa { println("<< This is A task! >>") }
-// tasks.aaa.execute()
