@@ -10,58 +10,58 @@ import hello.Member;
 import hello.UserMapper;
 
 
-/** 
+/**
  * DB 마이그레이션과 시딩을 관리합니다.
  */
-@Service  
+@Service
 public class Migration {
-	@Autowired
+    @Autowired
     private Environment env;
 
-	@Autowired
-	UserMapper userMapper;
+    @Autowired
+    UserMapper userMapper;
 
-	@Autowired
-	PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-	private Flyway flyway;
-	
-	public void run() {
-		this.setFlyway();
+    private Flyway flyway;
 
-		String mode = env.getProperty("migration");
+    public void run() {
+        this.setFlyway();
 
-		//  DB table 생성 및 seeder 실행
+        String mode = env.getProperty("migration");
+
+        //  DB table 생성 및 seeder 실행
         if ("up".equals(mode)) {
-			this.flyway.migrate();
-			this.memberSeeder();
-		
+            this.flyway.migrate();
+            this.memberSeeder();
+
 		//  DB 초기화.
-		} else if ("clean".equals(mode)) {
-			this.flyway.clean();
-		}
-	}
+        } else if ("clean".equals(mode)) {
+            this.flyway.clean();
+        }
+    }
 
-    /** 
-     * Flyway인스턴스를 로드 
+    /**
+     * Flyway인스턴스를 로드
      */
-	private void setFlyway() {
-		String url = env.getProperty("spring.datasource.url");
-		String user = env.getProperty("spring.datasource.username");
-		String password = env.getProperty("spring.datasource.password");
+    private void setFlyway() {
+        String url = env.getProperty("spring.datasource.url");
+        String user = env.getProperty("spring.datasource.username");
+        String password = env.getProperty("spring.datasource.password");
 
-		this.flyway = Flyway.configure().dataSource(url, user, password).load();
-	}
+        this.flyway = Flyway.configure().dataSource(url, user, password).load();
+    }
 
-    /** 
+    /**
      * 개발용 유저 생성 seeder
      */
-	private void memberSeeder() {
+    private void memberSeeder() {
         Member member = new Member();
         member.setUsername("user3");
         member.setPassword(passwordEncoder.encode("password"));
-		member.setName("안보여");
+        member.setName("안보여");
 
-		userMapper.insertUser(member);		
-	}
+        userMapper.insertUser(member);
+    }
 }
