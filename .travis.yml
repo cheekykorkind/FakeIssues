@@ -15,4 +15,4 @@ cache:
     - '$HOME/demo/.gradle'
 
 # clean 후 Build (Build시 자동으로 test 수행)
-script: "./demo/gradlew clean build"
+script: "cd demo && ./gradlew clean build "
