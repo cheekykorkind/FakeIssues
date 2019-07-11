@@ -5,6 +5,7 @@ jdk:
 branches:
   only:
     - master
+    - /^*$/
 
 # Travis CI 서버의 Cache 활성화
 cache:
