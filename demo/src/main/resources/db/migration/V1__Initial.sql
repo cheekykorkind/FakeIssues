@@ -9,10 +9,9 @@ CREATE TABLE user (
     isCredentialsNonExpired TINYINT(1) NULL DEFAULT NULL,
     isEnabled TINYINT(1) NULL DEFAULT NULL
 )
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-;
- 
+default character set = utf8;
+
+--  DEFAULT CHARSET=UTF8;  
 
 -- DROP TABLE IF EXISTS authority;
 CREATE TABLE authority (
