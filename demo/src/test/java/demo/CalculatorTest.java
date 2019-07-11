@@ -5,8 +5,7 @@ package demo;
 
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import org.junit.Assert;
 
 public class CalculatorTest {
 
@@ -20,6 +19,6 @@ public class CalculatorTest {
         long sum = num1 + num2;
 
         //thwn
-        assertThat(sum).isEqualTo(3);
+        Assert.assertEquals(sum, 3);
     }
 }
