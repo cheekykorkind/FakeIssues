@@ -35,4 +35,6 @@ dependencies {
     compile("org.mybatis:mybatis:3.5.0")
 
     compile("org.springframework.boot:spring-boot-starter-security")
+
+    compile('org.flywaydb:flyway-core')
 }
