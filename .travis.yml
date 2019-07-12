@@ -2,11 +2,11 @@ language: java
 jdk:
   - openjdk8
 
-# all_branches: true
+all_branches: true
 
-branches:
-  only:
-    - master
+# branches:
+#   only:
+#     - master
 
 # Travis CI 서버의 Cache 활성화
 cache:
