@@ -10,21 +10,11 @@ import hello.Member;
 
 @Controller
 public class AppController {
-    @RequestMapping("/")
-    public String root() {
-        return "root";
-    }
-
-    @RequestMapping("/index")
-    public String index() {
-        return "index";
-    }
-
-    @RequestMapping("/index2")
+    @RequestMapping("/home")
     public String index2() {
-        return "index2";
+        return "home";
     }
-    
+
     @RequestMapping("/login")
     public String login() {
         return "login";

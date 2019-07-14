@@ -15,10 +15,10 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import hello.CustomUserDetailsService;
 import hello.CustomLoginSuccessHandler;
- 
+
 @EnableWebSecurity
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
-    
+
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
@@ -29,7 +29,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return new CustomLoginSuccessHandler("/index2");
+        return new CustomLoginSuccessHandler("/home");
     }
 
     @Override
@@ -38,18 +38,20 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
             "/resources/**"
         );
     }
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests().anyRequest().authenticated()
-            .and()
+        .and()
             .formLogin()
             .loginPage("/login")
             .successHandler(successHandler())
-            .permitAll();
+            .permitAll()
+        .and()
+            .logout();  // 로그아웃후 디폴트 리다이렉션은 /login이 된다.
     }
- 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());

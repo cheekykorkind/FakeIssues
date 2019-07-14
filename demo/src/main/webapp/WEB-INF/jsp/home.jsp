@@ -3,10 +3,10 @@
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>root</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>home</title>
 </head>
 <body>
-    root
+  home
 </body>
 </html>
