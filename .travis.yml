@@ -4,15 +4,14 @@ jdk:
 
 all_branches: true
 
-# branches:
-#   only:
-#     - master
-
 # Travis CI 서버의 Cache 활성화
 cache:
   directories:
     - '$HOME/demo/.m2/repository'
     - '$HOME/demo/.gradle'
+
+notifications:
+  email: false
 
 # clean 후 Build (Build시 자동으로 test 수행)
 script: "cd demo && ./gradlew clean build "
