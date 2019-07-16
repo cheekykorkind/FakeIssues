@@ -39,4 +39,6 @@ dependencies {
     compile('org.flywaydb:flyway-core')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    compile("org.hibernate.validator:hibernate-validator")
 }

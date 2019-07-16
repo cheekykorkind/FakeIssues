@@ -1,12 +1,14 @@
 package hello;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.validation.BindingResult;
 
 
 import hello.UserMapper;
@@ -32,7 +34,12 @@ public class AppController {
     }
 
     @PostMapping("/user/create")
-    public String create(MemberRequest memberRequest) {
+    public String create(@Valid MemberRequest memberRequest, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("error error");
+            return "User/add";
+        }
+
         System.out.println("================================================");
         System.out.println(memberRequest.getUsername());
         System.out.println("================================================");
