@@ -14,8 +14,14 @@
   <form class="login-form" action="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/user/create") %>" method="POST" >
     <div class="form-group">
       <label>Email address</label>
-      <input type="email" class="form-control" name="username">
-      <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <input type="email" class="form-control " name="username">
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+
+      <p><%= request.getAttribute("v") != null %></p>
+      <%-- request.getAttribute("v").hasFieldErrors("username") ? "is-invalid" : "" --%>
+
     </div>
     <div class="form-group">
       <label>Password</label>

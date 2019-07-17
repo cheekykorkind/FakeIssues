@@ -7,11 +7,11 @@ import javax.validation.constraints.Size;
 public class MemberRequest {
 
     @NotNull
-    @Size(min=8, max=30)
+    @Size(min=8, max=30, message = "유저아이디의 길이가 부적절합니다")
     private String username;
 
     @NotNull
-    @Min(8)
+    @Min(value=8, message = "비밀번호의 길이가 부적절합니다")
     private String password;
 
 
