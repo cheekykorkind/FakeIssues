@@ -14,7 +14,6 @@ public class MemberRequest {
     @Min(value=8, message = "비밀번호의 길이가 부적절합니다")
     private String password;
 
-
     public String getUsername() {
         return username;
     }

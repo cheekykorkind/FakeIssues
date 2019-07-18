@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
 
-
 import hello.UserMapper;
 import hello.Member;
 import hello.MemberRequest;
-
 
 @Controller
 public class AppController {
@@ -36,24 +34,12 @@ public class AppController {
 
     @PostMapping("/user/create")
     public String create(@Valid MemberRequest memberRequest, BindingResult bindingResult, Model m) {
-        BindingResult b = bindingResult;
-        if (b.hasErrors()) {
-
-            System.out.println(b.hasFieldErrors("username"));
-            // System.out.println(b.getFieldError("username").getRejectedValue());
-            // System.out.println(b.getFieldError("username").getDefaultMessage());
-            // System.out.println(b.getFieldError("password").getRejectedValue());
-            // System.out.println(b.getFieldError("password").getDefaultMessage());
-            m.addAttribute("v", b);
-            m.addAttribute("v2", "oo");
+        BindingResult validation = bindingResult;
+        if (validation.hasErrors()) {
+            m.addAttribute("v", validation);
 
             return "User/add";
         }
-
-        System.out.println("================================================");
-        System.out.println(memberRequest.getUsername());
-        System.out.println("================================================");
-        System.out.println(memberRequest.getPassword());
 
         return "redirect:/home";
     }
