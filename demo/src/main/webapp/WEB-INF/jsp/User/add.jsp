@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page import="org.springframework.validation.BindingResult" %>
 
 <html>
@@ -11,34 +13,11 @@
   <title>user add</title>
 </head>
 <body>
-<%
-  BindingResult validation = (BindingResult) request.getAttribute("v");
-  boolean hasError = validation != null;
-%>
-  <form class="login-form" action="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/user/create") %>" method="POST" >
-    <div class="form-group">
-      <label>User account</label>
-      <% if (hasError && validation.hasFieldErrors("username")) { %>
-        <input type="text" class="form-control is-invalid" name="username" value="<%= validation.getFieldError("username").getRejectedValue() %>">
-          <div class="invalid-feedback">
-            <%= validation.getFieldError("username").getDefaultMessage() %>
-          </div>
-      <% } else { %>
-        <input type="text" class="form-control" name="username">
-      <% } %>
-    </div>
 
-    <div class="form-group">
-      <label>Password</label>
-      <% if (hasError && validation.hasFieldErrors("password")) { %>
-        <input type="password" class="form-control is-invalid" name="password">
-          <div class="invalid-feedback">
-            <%= validation.getFieldError("password").getDefaultMessage() %>
-          </div>
-      <% } else { %>
-        <input type="password" class="form-control" name="password">
-      <% } %>
-    </div>
+  <form class="login-form" action="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/user/create") %>" method="POST" >
+
+    <%@ include file="../ViewHelper/textInput.jsp" %>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </body>
