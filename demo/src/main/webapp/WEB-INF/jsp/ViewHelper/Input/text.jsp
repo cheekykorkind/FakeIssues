@@ -6,6 +6,10 @@
     <input type="text" class="form-control" name="${param.name}">
   </c:when>
 
+  <c:when test="${(param.otherErrors == 'true') and (param.error == 'false')}">
+    <input type="text" class="form-control" name="${param.name}" value="${param.rejectedValue}">
+  </c:when>
+
   <c:otherwise>
     <input type="text" class="form-control is-invalid" name="${param.name}" value="${param.rejectedValue}">
     <div class="invalid-feedback">

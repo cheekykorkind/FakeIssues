@@ -34,9 +34,8 @@ public class AppController {
 
     @PostMapping("/user/create")
     public String create(@Valid MemberRequest memberRequest, BindingResult bindingResult, Model m) {
-        BindingResult validation = bindingResult;
-        if (validation.hasErrors()) {
-            m.addAttribute("v", validation);
+        if (bindingResult.hasErrors()) {
+            m.addAttribute("v", bindingResult);
 
             return "User/add";
         }
