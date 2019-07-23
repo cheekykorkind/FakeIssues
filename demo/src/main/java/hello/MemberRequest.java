@@ -11,7 +11,7 @@ public class MemberRequest {
     private String username;
 
     @NotNull(message = "입력은 필수입니다")
-    @Min(value=8, message = "비밀번호의 길이가 부적절합니다")
+    @Size(min=8, message = "비밀번호의 길이가 부적절합니다")
     private String password;
 
     public String getUsername() {
