@@ -17,6 +17,7 @@ import hello.MemberRequest;
 
 @Controller
 public class AppController {
+
     @RequestMapping("/home")
     public String index2() {
         return "home";
