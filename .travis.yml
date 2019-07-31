@@ -7,11 +7,11 @@ all_branches: true
 # Travis CI 서버의 Cache 활성화
 cache:
   directories:
-    - '$HOME/demo/.m2/repository'
-    - '$HOME/demo/.gradle'
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
 
 notifications:
   email: false
 
 # clean 후 Build (Build시 자동으로 test 수행)
-script: "demo/gradlew clean build"
+script: "./gradlew clean build"
