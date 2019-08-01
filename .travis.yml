@@ -28,6 +28,7 @@ addons:
       - mysql-server
 
 before_script:
+  - mysql --version
   - mysql -e 'create database fake_issues_test;'
 
 # gradle test task
