@@ -28,8 +28,7 @@ addons:
       - mysql-server
 
 before_script:
-  - mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-  - sudo systemctl restart mysql
+  - cp ./src/main/resources/travisci.application.properties ./src/test/resources/application-test.properties
   - mysql -e 'create database fake_issues_test;'
 
 # gradle test task
