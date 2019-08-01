@@ -22,8 +22,9 @@ import hello.Migration;
 @TestPropertySource(locations ="classpath:/application-test.properties")
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DbTest {
-    private static final Logger LOG = LoggerFactory.getLogger(DbTest.class);
+public class UserTest
+{
+    private static final Logger LOG = LoggerFactory.getLogger(UserTest.class);
 
     @Autowired
     private Migration migration;
@@ -41,18 +42,20 @@ public class DbTest {
     }
 
     @Test
-    public void dbTest1() throws Exception
+    public void UserTest1() throws Exception
     {
         Member member = new Member();
-        member.setUsername("user44");
+        String name = "testUser";
+
+        member.setUsername(name);
         member.setPassword(passwordEncoder.encode("password44"));
         member.setName("44aa");
 
         userMapper.insertUser(member);
 
-        assertEquals("user44", userMapper.readUser("user44").getUsername());
+        assertEquals(name, userMapper.readUser(name).getUsername());
 
-        userMapper.deleteUser(userMapper.readUser("user44").getId());
+        userMapper.deleteUser(userMapper.readUser(name).getId());
     }
 
     @After

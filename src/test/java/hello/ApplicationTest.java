@@ -21,8 +21,8 @@ import org.springframework.test.context.TestPropertySource;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ApplicationTest {
-
+public class ApplicationTest
+{
     private static final Logger LOG = LoggerFactory.getLogger(ApplicationTest.class);
 
     @Autowired
