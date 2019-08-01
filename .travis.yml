@@ -28,7 +28,9 @@ addons:
       - mysql-server
 
 before_script:
-  - mysql -u root -e "SET PASSWORD FOR root@localhost = PASSWORD('root');"
+  - mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - mysql_upgrade
+  - service mysql restart
   - mysql -e 'create database fake_issues_test;'
 
 # gradle test task
