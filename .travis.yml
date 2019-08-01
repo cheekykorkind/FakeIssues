@@ -13,8 +13,24 @@ cache:
 notifications:
   email: false
 
-# Build (Build시 자동으로 test 수행)
+services:
+  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+
+dist: trusty
+
+sudo: required
+
+before_script:
+  - mysql -e 'create database fake_issues_test;'
+
+# gradle test task
 script:
-  # - cp ./src/main/resources/dev.application.properties ./src/main/resources/application.properties
   - ./gradlew test
 
