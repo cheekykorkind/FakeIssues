@@ -13,19 +13,19 @@ cache:
 notifications:
   email: false
 
+dist: xenial
+
+sudo: required
+
 services:
   - mysql
 
 addons:
   apt:
     sources:
-      - mysql-5.7-trusty
+      - mysql-5.7
     packages:
       - mysql-server
-
-dist: trusty
-
-sudo: required
 
 before_script:
   - mysql -e 'create database fake_issues_test;'
