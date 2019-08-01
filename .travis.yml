@@ -15,6 +15,6 @@ notifications:
 
 # Build (Build시 자동으로 test 수행)
 script:
-  - cp ./src/main/resources/dev.application.properties ./src/main/resources/application.properties
-  - ./gradlew build
+  # - cp ./src/main/resources/dev.application.properties ./src/main/resources/application.properties
+  - ./gradlew test
 
