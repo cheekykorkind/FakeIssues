@@ -43,6 +43,22 @@ public class Migration {
     }
 
     /**
+     * 유닛 테스트 마이그레이션 업
+     */
+    public void testUp() {
+        this.setFlyway();
+        this.flyway.migrate();
+    }
+
+    /**
+     * 유닛 테스트 마이그레이션 다운
+     */
+    public void testClean() {
+        this.setFlyway();
+        this.flyway.clean();
+    }
+
+    /**
      * Flyway인스턴스를 로드
      */
     private void setFlyway() {

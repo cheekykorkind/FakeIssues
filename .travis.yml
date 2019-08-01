@@ -7,11 +7,35 @@ all_branches: true
 # Travis CI 서버의 Cache 활성화
 cache:
   directories:
-    - '$HOME/demo/.m2/repository'
-    - '$HOME/demo/.gradle'
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
 
 notifications:
   email: false
 
-# clean 후 Build (Build시 자동으로 test 수행)
-script: "cd demo && ./gradlew clean build "
+# mysql 5.7 인스톨이 가능한 ubuntu버전 선택
+dist: xenial
+
+sudo: required
+
+services:
+  - mysql
+
+# apt-get install를 여기 적는 방법도 있다
+addons:
+  apt:
+    sources:
+      - mysql-5.7
+    packages:
+      - mysql-server
+
+# properties파일을 cp한 이유
+# 1. travis ci의 VM에서 mysql 유저 비밀번호 설정되게 명령어를 적기보다, properties파일을 바꾸는게 효율적이라 cp로 대처
+# 2. 로컬 개발 환경은 mysql 유저 비밀번호 사용하는 설정이니까, 다른 properties파일이 필요했다.
+before_script:
+  - cp ./src/main/resources/travisci.application.properties ./src/test/resources/application-test.properties
+  - mysql -e 'create database fake_issues_test;'
+
+# gradle test task
+script:
+  - ./gradlew test
