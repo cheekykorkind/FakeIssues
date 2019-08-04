@@ -14,4 +14,14 @@
   <delete id="deleteUser" parameterType="Long">
     DELETE FROM user WHERE id = #{id}
   </delete>
+
+  <insert id="createManyIssues" parameterType="java.util.List">
+    INSERT INTO issues (title, content, userId)
+    VALUES
+
+    <!-- sql mapper에서 foreach는 collection의 rhs값은 list로 고정, item의 rhs값은 자유롭게 설정 가능하다 -->
+    <foreach item="issue" collection="list" open="(" separator="),(" close=")">
+      #{issue.title}, #{issue.content}, #{issue.userId}
+    </foreach>
+  </insert>
 </mapper>
