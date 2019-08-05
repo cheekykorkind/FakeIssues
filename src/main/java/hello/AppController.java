@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+import hello.SecurityMember;
 import hello.UserMapper;
 import hello.Member;
 import hello.MemberRequest;
@@ -30,6 +32,10 @@ public class AppController {
 
     @GetMapping("/user/add")
     public String add() {
+        SecurityMember principal = (SecurityMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        System.out.println(principal.getId());
+
         return "User/add";
     }
 
