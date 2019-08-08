@@ -76,4 +76,39 @@ public class IssueTest extends ApplicationTest
         }
         LOG.debug("================================");
     }
+
+    @Test
+    public void lastIdTest() throws Exception
+    {
+        LOG.debug("================================");
+        System.out.println(userMapper.lastId());
+        LOG.debug("================================");
+    }
+
+    @Test
+    public void deleteIssuesTest() throws Exception
+    {
+        Member member = new Member();
+        String name = "testUser";
+
+        member.setUsername(name);
+        member.setPassword("password44");
+        member.setName("44aa");
+        userMapper.insertUser(member);
+
+        List<Issue> list1 = new ArrayList<>();
+        Long userId = userMapper.lastId();
+
+        for (Long i = 0L; i < 3; i++) {
+            Issue tempIssue = new Issue();
+            tempIssue.setTitle("title" + String.valueOf(i));
+            tempIssue.setContent("content" + String.valueOf(i));
+            tempIssue.setUserId(userId);
+            list1.add(tempIssue);
+        }
+
+        userMapper.createManyIssues(list1);
+
+        userMapper.deleteIssues(userId);
+    }
 }

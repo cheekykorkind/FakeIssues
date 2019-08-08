@@ -15,4 +15,6 @@ public interface UserMapper {
     public void createManyIssues(List<Issue> issues);
     public List<Issue> selectIssues(Long userId);
     public Member findIssuesByUserId(Long userId);
+    public Long lastId();
+    public void deleteIssues(Long userId);
 }

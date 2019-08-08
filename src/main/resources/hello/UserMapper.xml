@@ -15,6 +15,10 @@
     DELETE FROM user WHERE id = #{id}
   </delete>
 
+  <select id="lastId" resultType="Long">
+    SELECT MAX(id) FROM user
+  </select>
+
   <insert id="createManyIssues" parameterType="java.util.List">
     INSERT INTO issues (title, content, userId)
     VALUES
@@ -65,4 +69,16 @@
       <result property="userId" column="i_userId"/>
     </collection>
   </resultMap>
+
+
+  <delete id="deleteIssues" parameterType="Long">
+    DELETE
+      U, I
+    FROM
+      user AS U
+    LEFT JOIN
+      issues AS I
+    ON U.id = I.userId
+      WHERE U.id = #{userId};
+  </delete>
 </mapper>
