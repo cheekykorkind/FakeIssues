@@ -24,4 +24,45 @@
       #{issue.title}, #{issue.content}, #{issue.userId}
     </foreach>
   </insert>
+
+  <!-- select -->
+  <select id="selectIssues" resultMap="issueResultMap">
+    SELECT *
+    FROM issues
+    WHERE userId = #{userId}
+  </select>
+
+  <resultMap id="issueResultMap" type="hello.Issue">
+    <id property="id" column="user_id" />
+    <result property="title" column="title"/>
+    <result property="content" column="content"/>
+    <result property="userId" column="userId"/>
+  </resultMap>
+
+
+  <!-- hasMany select : user가 1 issues가 n -->
+  <select id="findIssuesByUserId" resultMap="findIssuesByUserIdResultMap">
+    select
+      U.id,
+      I.id as i_id,
+      I.title as i_title,
+      I.content as i_content,
+      I.userId as i_userId
+    from
+      user as U,
+      issues as I
+    where
+      I.userId = #{userId}
+  </select>
+
+  <resultMap type="hello.Member" id="findIssuesByUserIdResultMap">
+    <id property="id" column="id" />
+
+    <collection property="issues" ofType="hello.Issue">
+      <result property="id" column="i_id"/>
+      <result property="title" column="i_title"/>
+      <result property="content" column="i_content"/>
+      <result property="userId" column="i_userId"/>
+    </collection>
+  </resultMap>
 </mapper>

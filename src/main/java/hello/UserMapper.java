@@ -13,4 +13,6 @@ public interface UserMapper {
     public void insertUser(Member user);
     public void deleteUser(Long id);
     public void createManyIssues(List<Issue> issues);
+    public List<Issue> selectIssues(Long userId);
+    public Member findIssuesByUserId(Long userId);
 }
