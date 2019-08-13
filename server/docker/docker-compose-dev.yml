@@ -1,0 +1,14 @@
+version: '3'
+services:
+  dynamic_uid_image:
+    build:
+      context: .
+      args:
+        - UID=70000
+        - GID=70000
+        - UNAME=vagrant1
+    container_name: 'dynamic_uid_image'
+    working_dir: '/home/vagrant1/opt'
+    volumes:
+      - ../../:/home/vagrant1/opt
+    tty: true
