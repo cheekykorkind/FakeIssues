@@ -10,3 +10,8 @@
 
 ### 마이그레이션 clean
 ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar -migration=clean  
+
+
+# docker exec mysql57 mysql -u root -proot -e "create database fake_issues_test;"
+# docker exec fake_issue ./gradlew clean build
+# docker exec fake_issue chown -R vagrant:vagrant /home/vagrant/opt
