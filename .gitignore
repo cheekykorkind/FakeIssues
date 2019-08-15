@@ -39,3 +39,6 @@ hs_err_pid*
 
 # ignore real property file. dev, prod will be changed.
 application.properties
+
+# ignore real docker compose file. dev, prod will be changed.
+docker-compose.yml
