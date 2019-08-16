@@ -30,6 +30,38 @@
   </insert>
 
   <!-- select -->
+  <select id="findById" resultType="hello.Member">
+    SELECT *
+    FROM user
+    WHERE id = #{id}
+  </select>
+
+  <!-- hasMany update : user가 1 issues가 n -->
+  <update id="updateManyIssues" parameterType="hello.Member">
+    UPDATE
+      user as U 
+        INNER JOIN
+          issues as I
+    ON
+      U.id = I.userId
+    SET
+      I.title = 
+        CASE
+          <foreach collection="issues" item="issue">
+            WHEN I.id = #{issue.id} THEN #{issue.title}
+          </foreach>
+        END,
+      I.content = 
+        CASE
+          <foreach collection="issues" item="issue">
+            WHEN I.id = #{issue.id} THEN #{issue.content}
+          </foreach>
+        END
+    WHERE
+      I.userId = #{id}
+  </update>
+
+  <!-- select -->
   <select id="selectIssues" resultMap="issueResultMap">
     SELECT *
     FROM issues
@@ -53,8 +85,11 @@
       I.content as i_content,
       I.userId as i_userId
     from
-      user as U,
-      issues as I
+      user as U
+        INNER JOIN
+          issues as I
+        ON
+          U.id = I.userId
     where
       I.userId = #{userId}
   </select>

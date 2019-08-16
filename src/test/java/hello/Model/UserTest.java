@@ -22,20 +22,20 @@ public class UserTest extends ApplicationTest
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Test
-    public void UserTest1() throws Exception
-    {
-        Member member = new Member();
-        String name = "testUser";
+    // @Test
+    // public void UserTest1() throws Exception
+    // {
+    //     Member member = new Member();
+    //     String name = "testUser";
 
-        member.setUsername(name);
-        member.setPassword(passwordEncoder.encode("password44"));
-        member.setName("44aa");
+    //     member.setUsername(name);
+    //     member.setPassword(passwordEncoder.encode("password44"));
+    //     member.setName("44aa");
 
-        userMapper.insertUser(member);
+    //     userMapper.insertUser(member);
 
-        assertEquals(name, userMapper.readUser(name).getUsername());
+    //     assertEquals(name, userMapper.readUser(name).getUsername());
 
-        userMapper.deleteUser(userMapper.readUser(name).getId());
-    }
+    //     userMapper.deleteUser(userMapper.readUser(name).getId());
+    // }
 }
