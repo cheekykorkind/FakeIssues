@@ -35,6 +35,6 @@ public class ApplicationTest
     @After
     public void tearDown()
     {
-        // migration.testClean();
+        migration.testClean();
     }
 }

@@ -78,6 +78,6 @@ public class Migration {
         member.setPassword(passwordEncoder.encode("password"));
         member.setName("안보여");
 
-        userMapper.insertUser(member);
+        userMapper.create(member);
     }
 }

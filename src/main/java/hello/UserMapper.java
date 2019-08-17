@@ -1,23 +1,39 @@
 package hello;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import hello.Member;
 import hello.Issue;
 
 public interface UserMapper {
-    public Member readUser(String username);
-    public List<String> readAuthority(String username);
-    public void insertUser(Member user);
-    public void deleteUser(Long id);
-    public void createManyIssues(List<Issue> issues);
-    public List<Issue> selectIssues(Long userId);
-    public Member findIssuesByUserId(Long userId);
-    public Long lastId();
-    public void deleteIssues(Long userId);
+    // create
+    public void create(Member user);
 
-    public Member findById(Long id);
+    // delete
+    public void delete(long id);
+
+    // update
+
+
+    // select
+    public Member findById(long id);
+    public Member findByUsername(String username);
+    public List<String> readAuthority(String username);
+    public long lastId();
+    public long length();
+
+
+    // hasMany create
+    public void createManyIssues(List<Issue> issues);
+    
+
+    // hasMany delete
+    public void deleteManyIssues(long userId);
+    
+
+    // hasMany update
     public void updateManyIssues(Member user);
+
+    // hasMany select
+    public Member findIssuesByUserId(long userId);   
 }

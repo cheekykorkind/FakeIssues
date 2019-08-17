@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hello.UserMapper">
-  <select id="readUser" parameterType="String" resultType="hello.Member">
+  <select id="findByUsername" parameterType="String" resultType="hello.Member">
     SELECT * FROM user WHERE username = #{username}
   </select>
+
   <select id="readAuthority" parameterType="String" resultType="String">
     SELECT authority_name FROM authority WHERE username = #{username}
   </select>
-  <insert id="insertUser" parameterType="hello.Member">
+
+  <select id="length" resultType="long">
+    SELECT COUNT(*) 
+    FROM user
+  </select>
+ 
+
+  <insert id="create" parameterType="hello.Member">
     INSERT INTO user(username, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
     VALUES(#{username}, #{password}, #{name}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
   </insert>
-  <delete id="deleteUser" parameterType="Long">
+  <delete id="delete" parameterType="long">
     DELETE FROM user WHERE id = #{id}
   </delete>
 
-  <select id="lastId" resultType="Long">
+  <select id="lastId" resultType="long">
     SELECT MAX(id) FROM user
   </select>
 
@@ -61,21 +69,6 @@
       I.userId = #{id}
   </update>
 
-  <!-- select -->
-  <select id="selectIssues" resultMap="issueResultMap">
-    SELECT *
-    FROM issues
-    WHERE userId = #{userId}
-  </select>
-
-  <resultMap id="issueResultMap" type="hello.Issue">
-    <id property="id" column="user_id" />
-    <result property="title" column="title"/>
-    <result property="content" column="content"/>
-    <result property="userId" column="userId"/>
-  </resultMap>
-
-
   <!-- hasMany select : user가 1 issues가 n -->
   <select id="findIssuesByUserId" resultMap="findIssuesByUserIdResultMap">
     select
@@ -106,7 +99,7 @@
   </resultMap>
 
 
-  <delete id="deleteIssues" parameterType="Long">
+  <delete id="deleteManyIssues" parameterType="long">
     DELETE
       U, I
     FROM

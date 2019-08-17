@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import hello.Issue;
 
 public class Member implements UserDetails {
-    private Long id;
+    private long id;
 
     private String username;
 
@@ -29,11 +29,11 @@ public class Member implements UserDetails {
 
     private List<Issue> issues;
 
-    public Long getId() {
+    public long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

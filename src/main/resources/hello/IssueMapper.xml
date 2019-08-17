@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hello.IssueMapper">
+  <insert id="create" parameterType="hello.Issue">
+    INSERT INTO issues
+      (title, content, userId)
+    VALUES
+      (#{title}, #{content}, #{userId})
+  </insert>
+
+  <delete id="delete" parameterType="long">
+    DELETE
+    FROM issues
+    WHERE id = #{id}
+  </delete>
+
+  <!-- select -->
+  <select id="length" resultType="long">
+    SELECT COUNT(*) 
+    FROM issues
+  </select>
+
+  <select id="findByUserId" resultMap="findByUserIdResultMap">
+    SELECT *
+    FROM issues
+    WHERE userId = #{userId}
+  </select>
+  <resultMap id="findByUserIdResultMap" type="hello.Issue">
+    <id property="id" column="id" />
+    <result property="title" column="title"/>
+    <result property="content" column="content"/>
+    <result property="userId" column="userId"/>
+  </resultMap>
+
+  <select id="findById" resultType="hello.Member">
+    SELECT *
+    FROM issues
+    WHERE id = #{id}
+  </select>
+
+  <select id="lastId" resultType="long">
+    SELECT MAX(id) FROM issues
+  </select>
+</mapper>
+
+
+  

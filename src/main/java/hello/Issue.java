@@ -2,19 +2,19 @@ package hello;
 
 public class Issue
 {
-    private Long id;
+    private long id;
 
     private String title;
 
     private String content;
 
-    private Long userId;
+    private long userId;
 
-    public Long getId() {
+    public long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -32,10 +32,10 @@ public class Issue
         this.content = content;
     }
 
-    public Long getUserId() {
+    public long getUserId() {
         return this.userId;
     }
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 }
