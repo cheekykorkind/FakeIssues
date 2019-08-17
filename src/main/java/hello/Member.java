@@ -1,12 +1,15 @@
 package hello;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import hello.Issue;
+
 public class Member implements UserDetails {
-    private Long id;
+    private long id;
 
     private String username;
 
@@ -24,11 +27,13 @@ public class Member implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public Long getId() {
+    private List<Issue> issues;
+
+    public long getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -94,5 +99,13 @@ public class Member implements UserDetails {
 
     public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
         this.authorities = authorities;
+    }
+
+    public List<Issue> getIssues() {
+        return this.issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 }

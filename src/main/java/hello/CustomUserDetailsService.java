@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService{
  
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = userMapper.readUser(username);
+        Member member = userMapper.findByUsername(username);
         if(member != null) {
             member.setAuthorities(makeGrantedAuthority(userMapper.readAuthority(username)));
         }
