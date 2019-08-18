@@ -3,13 +3,13 @@
 [![Build Status](https://travis-ci.org/cheekykorkind/FakeIssues.svg?branch=master)](https://travis-ci.org/cheekykorkind/FakeIssues)
 
 ### 마이그레이션 없이 시작
-./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar  
+./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar
 
 ### 마이그레이션 up
-./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar -migration=up  
+./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar --migration=up
 
 ### 마이그레이션 clean
-./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar -migration=clean  
+./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar --migration=clean
 
 
 ## docker로 설정
@@ -33,10 +33,10 @@ UNAME=$(echo "$USER")  # Get linux user name from your host machine automaticall
 - docker exec fake_issue chown -R vagrant:vagrant /home/vagrant/opt
 
 ### 마이그레이션 없이 시작
-docker exec ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar  
+docker exec fake_issue ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar
 
 ### 마이그레이션 up
-docker exec ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar -migration=up  
+docker exec fake_issue ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar --migration=up
 
 ### 마이그레이션 clean
-docker exec ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar -migration=clean  
+docker exec fake_issue ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar --migration=clean
