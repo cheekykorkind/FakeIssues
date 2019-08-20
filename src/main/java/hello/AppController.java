@@ -12,13 +12,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import hello.SecurityMember;
 import hello.UserMapper;
 import hello.Member;
 import hello.MemberRequest;
+import hello.RepositoryRequest;
 
 @Controller
 public class AppController {
+    private static final Logger LOG = LoggerFactory.getLogger(AppController.class);
 
     @RequestMapping("/home")
     public String index2() {
@@ -45,6 +50,22 @@ public class AppController {
             m.addAttribute("v", bindingResult);
 
             return "User/add";
+        }
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("/repository/add")
+    public String repositoryAdd() {
+        return "Repository/add";
+    }
+
+    @PostMapping("/repository/create")
+    public String repositoryCreate(@Valid RepositoryRequest repositoryRequest, BindingResult bindingResult, Model m) {
+        if (bindingResult.hasErrors()) {
+            m.addAttribute("v", bindingResult);
+
+            return "Repository/add";
         }
 
         return "redirect:/home";
