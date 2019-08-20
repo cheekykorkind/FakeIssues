@@ -20,10 +20,15 @@ import hello.UserMapper;
 import hello.Member;
 import hello.MemberRequest;
 import hello.RepositoryRequest;
+import hello.RepositoryMapper;
+import hello.Repository;
 
 @Controller
 public class AppController {
     private static final Logger LOG = LoggerFactory.getLogger(AppController.class);
+
+    @Autowired
+    RepositoryMapper repositoryMapper;
 
     @RequestMapping("/home")
     public String index2() {
@@ -67,6 +72,13 @@ public class AppController {
 
             return "Repository/add";
         }
+
+        Repository repository = new Repository();
+        repository.setName(repositoryRequest.getName());
+        repository.setDescription(repositoryRequest.getDescription());
+        repository.setType(repositoryRequest.getType());
+
+        repositoryMapper.create(repository);
 
         return "redirect:/home";
     }
