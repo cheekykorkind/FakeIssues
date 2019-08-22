@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hello.RepositoriyUsersMapper">
+  <insert id="create" parameterType="hello.RepositoriyUser">
+    INSERT INTO repository_users
+      (userId, repositoryId)
+    VALUES
+      (#{userId}, #{repositoryId})
+  </insert>
+
+  <delete id="delete" parameterType="long">
+    DELETE
+    FROM repository_users
+    WHERE id = #{id}
+  </delete>
+
+  <!-- select -->
+  <select id="length" resultType="long">
+    SELECT COUNT(*)
+    FROM repository_users
+  </select>
+
+  <select id="findById" resultType="hello.RepositoriyUser">
+    SELECT *
+    FROM repository_users
+    WHERE id = #{id}
+  </select>
+
+  <select id="lastId" resultType="long">
+    SELECT MAX(id) FROM repository_users
+  </select>
+</mapper>

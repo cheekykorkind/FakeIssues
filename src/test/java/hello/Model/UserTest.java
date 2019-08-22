@@ -18,6 +18,7 @@ import hello.ApplicationTest;
 public class UserTest extends ApplicationTest
 {
     private static final Logger LOG = LoggerFactory.getLogger(UserTest.class);
+    // LOG.info(String.format("%d", 3344));
 
     @Autowired
     UserMapper userMapper;
@@ -41,7 +42,7 @@ public class UserTest extends ApplicationTest
         userMapper.create(account);
 
         long userId = userMapper.lastId();
-        
+
         assertEquals(name, userMapper.findById(userId).getUsername());
     }
 
@@ -51,7 +52,7 @@ public class UserTest extends ApplicationTest
         List<Issue> issues = new ArrayList<>();
 
         long beforeLength = issueMapper.length();
-        
+
         Member account = new Member();
         String name = "testUser";
 
@@ -85,7 +86,7 @@ public class UserTest extends ApplicationTest
         List<Issue> issues = new ArrayList<>();
 
         long beforeLength = issueMapper.length();
-        
+
         Member account = new Member();
         String name = "testUser";
 
@@ -119,7 +120,7 @@ public class UserTest extends ApplicationTest
         List<Issue> issues = new ArrayList<>();
 
         long beforeLength = issueMapper.length();
-        
+
         Member account = new Member();
         String name = "testUser";
 
@@ -143,7 +144,7 @@ public class UserTest extends ApplicationTest
 
         List<Issue> updates = new ArrayList<>();
         Member m = userMapper.findIssuesByUserId(userId);
-        
+
         for (Issue issue : m.getIssues()) {
             long issueId = issue.getId();
             issue.setTitle("fix3Title" + String.valueOf(issueId));
@@ -151,7 +152,7 @@ public class UserTest extends ApplicationTest
             updates.add(issue);
         }
         m.setIssues(updates);
-        
+
         userMapper.updateManyIssues(m);
 
         Member newM = userMapper.findIssuesByUserId(userId);
