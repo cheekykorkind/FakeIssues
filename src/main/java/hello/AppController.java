@@ -20,15 +20,19 @@ import hello.UserMapper;
 import hello.Member;
 import hello.MemberRequest;
 import hello.RepositoriesRequest;
-import hello.RepositoriesMapper;
+import hello.RepositoriesDao;
 import hello.Repositories;
+import hello.UserInfo;
 
 @Controller
 public class AppController {
     private static final Logger LOG = LoggerFactory.getLogger(AppController.class);
 
     @Autowired
-    RepositoriesMapper repositoryMapper;
+    UserInfo userInfo;
+
+    @Autowired
+    RepositoriesDao repositoriesDao;
 
     @RequestMapping("/home")
     public String index2() {
@@ -42,10 +46,6 @@ public class AppController {
 
     @GetMapping("/user/add")
     public String add() {
-        SecurityMember principal = (SecurityMember) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        System.out.println(principal.getId());
-
         return "User/add";
     }
 
@@ -60,12 +60,12 @@ public class AppController {
         return "redirect:/home";
     }
 
-    @GetMapping("/repository/add")
+    @GetMapping("/repositories/add")
     public String repositoryAdd() {
         return "Repositories/add";
     }
 
-    @PostMapping("/repository/create")
+    @PostMapping("/repositories/create")
     public String repositoryCreate(@Valid RepositoriesRequest repositoryRequest, BindingResult bindingResult, Model m) {
         if (bindingResult.hasErrors()) {
             m.addAttribute("v", bindingResult);
@@ -78,7 +78,7 @@ public class AppController {
         repository.setDescription(repositoryRequest.getDescription());
         repository.setType(repositoryRequest.getType());
 
-        repositoryMapper.create(repository);
+        repositoriesDao.create(userInfo.getUserId(), repository);
 
         return "redirect:/home";
     }

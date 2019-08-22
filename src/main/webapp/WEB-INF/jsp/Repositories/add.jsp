@@ -33,7 +33,7 @@
 
 <div class="container">
   <body>
-    <form action="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/repository/create") %>" method="POST">
+    <form action="<%= request.getRequestURL().toString().replace(request.getRequestURI(), "/repositories/create") %>" method="POST">
       <div class="row mt-4">
         <h3 class="col-md-auto">
           Create a new repository

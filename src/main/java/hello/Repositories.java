@@ -2,13 +2,13 @@ package hello;
 
 public class Repositories
 {
-    private long id;
+    protected long id;
 
-    private String name;
+    protected String name;
 
-    private String description;
+    protected String description;
 
-    private int type;
+    protected int type;
 
     public long getId() {
         return this.id;
