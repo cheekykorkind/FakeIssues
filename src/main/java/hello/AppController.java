@@ -19,16 +19,16 @@ import hello.SecurityMember;
 import hello.UserMapper;
 import hello.Member;
 import hello.MemberRequest;
-import hello.RepositoryRequest;
-import hello.RepositoryMapper;
-import hello.Repository;
+import hello.RepositoriesRequest;
+import hello.RepositoriesMapper;
+import hello.Repositories;
 
 @Controller
 public class AppController {
     private static final Logger LOG = LoggerFactory.getLogger(AppController.class);
 
     @Autowired
-    RepositoryMapper repositoryMapper;
+    RepositoriesMapper repositoryMapper;
 
     @RequestMapping("/home")
     public String index2() {
@@ -62,18 +62,18 @@ public class AppController {
 
     @GetMapping("/repository/add")
     public String repositoryAdd() {
-        return "Repository/add";
+        return "Repositories/add";
     }
 
     @PostMapping("/repository/create")
-    public String repositoryCreate(@Valid RepositoryRequest repositoryRequest, BindingResult bindingResult, Model m) {
+    public String repositoryCreate(@Valid RepositoriesRequest repositoryRequest, BindingResult bindingResult, Model m) {
         if (bindingResult.hasErrors()) {
             m.addAttribute("v", bindingResult);
 
-            return "Repository/add";
+            return "Repositories/add";
         }
 
-        Repository repository = new Repository();
+        Repositories repository = new Repositories();
         repository.setName(repositoryRequest.getName());
         repository.setDescription(repositoryRequest.getDescription());
         repository.setType(repositoryRequest.getType());

@@ -1,9 +1,15 @@
 package hello;
 
-public class Repository
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class RepositoriesRequest
 {
     private long id;
 
+    @NotNull(message = "입력은 필수입니다")
+    @Size(min=8, max=100, message = "리포지토리의 길이가 부적절합니다")
     private String name;
 
     private String description;
